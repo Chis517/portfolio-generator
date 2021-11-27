@@ -19,7 +19,7 @@ const promptUser = () => {
     },
     {
       type: 'input',
-      name: 'github',
+      name: 'gitHub',
       message: 'Enter your GitHub Username (Required)',
       validate: gitHubInput => {
         if (gitHubInput) {
@@ -125,7 +125,12 @@ Add a New Project
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
+      const pageHTML = generatePage(portfolioData);
+  
+      fs.writeFile('./index.html', pageHTML, err => {
+        if (err) throw new Error(err);
+          console.log('Page created! Check out index.html in this directory to see it!');
+        });
   });
 
 // const pageHTML = generatePage(Christan, Chis517)
@@ -151,4 +156,4 @@ promptUser()
 // //   profileDataArr.forEach(profileItem => console.log(profileItem));
 // // };
 
-// // printProfileData(profileDataArgs);
+// // printProfileData(profileDataArgs)
